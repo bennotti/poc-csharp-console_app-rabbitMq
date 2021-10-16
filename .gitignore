@@ -1,0 +1,6 @@
+src/bin/
+src/obj/
+src/.vs/
+devops/rabbitMQ/rabbitmq/data/.erlang.cookie
+devops/rabbitMQ/rabbitmq/data/
+devops/rabbitMQ/rabbitmq/
