@@ -5,6 +5,7 @@ using RabbitMQ.Client.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace poc_csharp_console_app_socket_io
@@ -61,7 +62,7 @@ namespace poc_csharp_console_app_socket_io
                         autoDelete: false,
                         arguments: null
                     );
-
+                    channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
                     var consumer = new EventingBasicConsumer(channel);
                     consumer.Received += (model, ea) =>
                     {
@@ -69,6 +70,8 @@ namespace poc_csharp_console_app_socket_io
                         var stringfiedMessage = Encoding.UTF8.GetString(body);
                         var message = JsonConvert.DeserializeObject<MessageInputDto>(stringfiedMessage);
                         Console.WriteLine(" [x] Received {0}", message.Content);
+                        Thread.Sleep(5000);
+                        Console.WriteLine(" [x] Done.");
                     };
                     channel.BasicConsume(queue: "Fila_Console_APP",
                                          autoAck: true,
