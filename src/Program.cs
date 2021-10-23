@@ -15,7 +15,9 @@ namespace poc_csharp_console_app_socket_io
         public static void execPublish(MessageInputDto message)
         {
             ConnectionFactory _factory = new ConnectionFactory {
-                HostName = "localhost"
+                HostName = "endereco.servidor.rabbitmq",
+                UserName = "guest_usr",
+                Password = "guest_pass"
             };
 
             using (var connection = _factory.CreateConnection())
@@ -48,7 +50,9 @@ namespace poc_csharp_console_app_socket_io
         {
             ConnectionFactory _factory = new ConnectionFactory
             {
-                HostName = "localhost"
+                HostName = "endereco.servidor.rabbitmq",
+                UserName = "guest_usr",
+                Password = "guest_pass"
             };
 
             using (var connection = _factory.CreateConnection())
